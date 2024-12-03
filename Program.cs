@@ -10,10 +10,10 @@ namespace UnidentifiedSociety
 
         }
     }
-
+     
    class Game
     {
-        private bool RunGame;
+       
         public Game()
         {
             while (true)
@@ -28,6 +28,7 @@ namespace UnidentifiedSociety
             Console.WriteLine("\r\n  __  __     ____   __         __  _ ____        __\r\n / / / /__  /  _/__/ /__ ___  / /_(_) _(_)__ ___/ /\r\n/ /_/ / _ \\_/ // _  / -_) _ \\/ __/ / _/ / -_) _  / \r\n\\____/_//_/___/\\_,_/\\__/_//_/\\__/_/_//_/\\__/\\_,_/  \r\n         / __/__  ____(_)__ / /___ __              \r\n        _\\ \\/ _ \\/ __/ / -_) __/ // /              \r\n       /___/\\___/\\__/_/\\__/\\__/\\_, /               \r\n                              /___/                \r\n");
         }
 
+
         void MainMenu()
         {
             Console.WriteLine(" --- Main Menu ---\n");
@@ -36,6 +37,7 @@ namespace UnidentifiedSociety
             Console.WriteLine("[3] CAMPAIGN MODE ");
             Console.WriteLine("[4] CREDITS ");
             Console.WriteLine("[5] EXIT ");
+
 
             byte MainMenuInput = Convert.ToByte(Console.ReadLine());
 
@@ -67,6 +69,10 @@ namespace UnidentifiedSociety
                     Console.WriteLine("\nThanks for Playing!");
                     Environment.Exit(1);
                     break;
+                default:
+                    Console.Clear();
+                    break;
+                    
             }
 
         }
@@ -83,6 +89,7 @@ namespace UnidentifiedSociety
                     new Game();
                     break;
                 case "2":
+                    Console.WriteLine("\nThanks for Playing!");
                     System.Environment.Exit(1);
                     break;
             }
@@ -98,14 +105,35 @@ namespace UnidentifiedSociety
             CreatePet();
         }
 
+        void setPetName ()
+        {
+
+            while (true)
+            {
+                Console.WriteLine("1. What is your alien's name? \n" +
+                  "    - Maximum of 8 Characters. \n" +
+                  "    - Special Characters and Numbers are Allowed.");
+
+                Console.Write(":");
+                String input = Console.ReadLine();
+               
+
+                if (input.Length <= 8 && input != " ")
+                {
+                    name = input;
+                    break;
+                } else {
+                    Console.Clear();
+                   
+                }
+
+            }
+        }
+        
+        public string name;
         void CreatePet()
         {
-            Console.WriteLine("1. What is your alien's name? \n" +
-                              "    - Maximum of 8 Characters. \n" +
-                              "    - Special Characters and Numbers are Allowed.");
-
-            Console.Write(":");
-            String name = Console.ReadLine();
+            setPetName();
 
             Console.WriteLine("\n2. What planet is your alien from?");
             Console.WriteLine("     [1] Aqua Planet Pampanga");
@@ -143,7 +171,8 @@ namespace UnidentifiedSociety
                 "2" => "Gold",
                 "3" => "Purple",
                 "4" => "Chrome",
-                "5" => "Charcoal"
+                "5" => "Charcoal",
+                
             };
 
             Console.WriteLine("\n4. How many eyes does your alien have (0-4)?");
