@@ -5,15 +5,22 @@ namespace UnidentifiedSociety
     abstract class GameMode
     {
         public abstract void Start();
+
+       
     }
 
+    // Inherited class with method overriding
     class LoadGame : GameMode
     {
         public override void Start()
         {
             Console.WriteLine("\nPlace holder palang po!");
         }
+
+       
     }
+
+    // Inherited class with method overriding
     class CampaignMode : GameMode
     {
         public override void Start()
@@ -32,7 +39,11 @@ namespace UnidentifiedSociety
             Console.WriteLine("Your partner is waiting… Let’s gooo!!!");
             Console.WriteLine();
         }
+
+        
     }
+
+    // Credits class with overriding Start
     class Credits : GameMode
     {
         public override void Start()
@@ -41,19 +52,33 @@ namespace UnidentifiedSociety
             Console.WriteLine("Unidentified Society Game");
             Console.WriteLine();
             Console.WriteLine("Developed by:");
-            Console.WriteLine("- Matthew Molina: Lead Programmer. Spearheaded the development of the core systems and gameplay mechanics.");
-            Console.WriteLine("- Lance Anthony Montierro: Co-Lead Programmer. Contributed to system development and implemented key game functionalities.");
-            Console.WriteLine("- Jheshiro Jevs Macado: Documentation Specialist. Authored and maintained detailed documentation for the game’s development process.");
+            Console.WriteLine("- Matthew Molina: Lead Programmer.");
+            Console.WriteLine("- Lance Anthony Montierro: Co-Lead Programmer.");
+            Console.WriteLine("- Jheshiro Jevs Macado: Documentation Specialist.");
             Console.WriteLine();
             Console.WriteLine("\nThank you for playing!");
         }
+
+      
     }
 
+    // NewGame class with method overriding and encapsulation
     class NewGame : GameMode
     {
         public override void Start()
         {
-            new Pet(); 
+            try
+            {
+                Console.WriteLine("\nCreating your new alien...");
+                new Pet();   
+            }
+            catch (Exception ex)
+            {
+                // Exception handling 
+                Console.WriteLine($"An error occurred while creating your new alien: {ex.Message}");
+            }
         }
+
+       
     }
 }

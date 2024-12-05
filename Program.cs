@@ -29,54 +29,72 @@ namespace UnidentifiedSociety
         }
 
 
+
+
+
         void MainMenu()
         {
-            Console.WriteLine(" --- Main Menu ---\n");
-            Console.WriteLine("[1] NEW GAME ");
-            Console.WriteLine("[2] LOAD GAME ");
-            Console.WriteLine("[3] CAMPAIGN MODE ");
-            Console.WriteLine("[4] CREDITS ");
-            Console.WriteLine("[5] EXIT ");
 
-
-            byte MainMenuInput = Convert.ToByte(Console.ReadLine());
-
-            switch (MainMenuInput)
+            try
             {
-                case 1:
-                    Console.Clear();
-                    PrintTitle();
-                    GameMode game = new NewGame();
-                    game.Start();
-                    BackToMainMenu();
-                    break;
-                case 2:
-                    Console.Clear();
-                    GameMode loadGame = new LoadGame();
-                    loadGame.Start();
-                    BackToMainMenu();
-                    break;
-                case 3:
-                    Console.Clear();
-                    GameMode campaign = new CampaignMode();
-                    campaign.Start();
-                    BackToMainMenu();
-                    break;
-                case 4:
-                    Console.Clear();
-                    GameMode credits = new Credits();
-                    credits.Start();
-                    BackToMainMenu();
-                    break;
-                case 5:
-                    Console.Clear();
-                    Console.WriteLine("\nThanks for Playing!");
-                    Environment.Exit(1);
-                    break;
-                default:
-                    Console.Clear();
-                    break;
-                    
+
+                Console.WriteLine(" --- Main Menu ---\n");
+                Console.WriteLine("[1] NEW GAME ");
+                Console.WriteLine("[2] LOAD GAME ");
+                Console.WriteLine("[3] CAMPAIGN MODE ");
+                Console.WriteLine("[4] CREDITS ");
+                Console.WriteLine("[5] EXIT ");
+
+                byte MainMenuInput = Convert.ToByte(Console.ReadLine());
+
+                switch (MainMenuInput)
+                {
+                    case 1:
+                        Console.Clear();
+                        PrintTitle();
+                        GameMode game = new NewGame();
+                        game.Start();
+                        BackToMainMenu();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        GameMode loadGame = new LoadGame();
+                        loadGame.Start();
+                        BackToMainMenu();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        GameMode campaign = new CampaignMode();
+                        campaign.Start();
+                        BackToMainMenu();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        GameMode credits = new Credits();
+                        credits.Start();
+                        BackToMainMenu();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("\nThanks for Playing!");
+                        Environment.Exit(1);
+                        break;
+                    default:
+                        Console.Clear();
+                        throw new InvalidOperationException("Invalid menu selection.");
+
+                }
+
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input. Please enter a valid number.\n");
+                MainMenu();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
         }
