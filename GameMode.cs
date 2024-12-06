@@ -2,7 +2,13 @@
 
 namespace UnidentifiedSociety
 {
-    abstract class GameMode
+    //interface
+    public interface IGameMode
+    {
+        void Start();
+    }
+
+    abstract class GameMode : IGameMode
     {
         public abstract void Start();
 
@@ -16,8 +22,6 @@ namespace UnidentifiedSociety
         {
             Console.WriteLine("\nPlace holder palang po!");
         }
-
-       
     }
 
     // Inherited class with method overriding
@@ -38,9 +42,7 @@ namespace UnidentifiedSociety
             Console.WriteLine();
             Console.WriteLine("Your partner is waiting… Let’s gooo!!!");
             Console.WriteLine();
-        }
-
-        
+        } 
     }
 
     // Credits class with overriding Start
@@ -58,8 +60,6 @@ namespace UnidentifiedSociety
             Console.WriteLine();
             Console.WriteLine("\nThank you for playing!");
         }
-
-      
     }
 
     // NewGame class with method overriding and encapsulation
@@ -78,7 +78,5 @@ namespace UnidentifiedSociety
                 Console.WriteLine($"An error occurred while creating your new alien: {ex.Message}");
             }
         }
-
-       
     }
 }
