@@ -2,11 +2,107 @@
 
 namespace UnidentifiedSociety
 {
+    // Struct para sa physical attribute ng alien kopal!
+    struct PhysicalAttributes
+    {
+        public int Eyes { get; set; }
+        public int Arms { get; set; }
+        public string SkinColor { get; set; }
+
+        public PhysicalAttributes(int eyes, int arms, string skinColor)
+        {
+            Eyes = eyes;
+            Arms = arms;
+            SkinColor = skinColor;
+        }
+
+        public override string ToString()
+        {
+            return $"Eye Count        : {Eyes}\n" +
+                   $"Arm Count        : {Arms}\n" +
+                   $"Skin Color       : {SkinColor}";
+        }
+    }
+
+    // Struct para sa appearance ng alien kopal!
+    struct AppearanceAttributes
+    {
+        public string Planet { get; set; }
+        public string EyeColor { get; set; }
+        public string Hairstyle { get; set; }
+        public string BodyType { get; set; }
+        public string Clothing { get; set; }
+        public string Accessory { get; set; }
+
+        public AppearanceAttributes(string planet, string eyeColor, string hairstyle, string bodyType, string clothing, string accessory)
+        {
+            Planet = planet;
+            EyeColor = eyeColor;
+            Hairstyle = hairstyle;
+            BodyType = bodyType;
+            Clothing = clothing;
+            Accessory = accessory;
+        }
+
+        public override string ToString()
+        {
+            return $"Planet Origin    : {Planet}\n" +
+                   $"Eye Color        : {EyeColor}\n" +
+                   $"Hairstyle        : {Hairstyle}\n" +
+                   $"Body Type        : {BodyType}\n" +
+                   $"Clothing         : {Clothing}\n" +
+                   $"Accessory        : {Accessory}";
+        }
+    }
+
+    // Struct sa ibang attribute ng alien kopal!
+    struct OtherAttributes
+    {
+        public bool HasTail { get; set; }
+        public string FavoriteFood { get; set; }
+        public string SpecialAbility { get; set; }
+        public bool HasWings { get; set; }
+        public bool GlowsInDark { get; set; }
+        public string FavoriteActivity { get; set; }
+        public string Transportation { get; set; }
+        public string FavoriteExercise { get; set; }
+        public string PreferredSoap { get; set; }
+        public string SpecialTalent { get; set; }
+
+        public OtherAttributes(bool hasTail, string favoriteFood, string specialAbility, bool hasWings, bool glowsInDark,
+                               string favoriteActivity, string transportation, string favoriteExercise, string preferredSoap, string specialTalent)
+        {
+            HasTail = hasTail;
+            FavoriteFood = favoriteFood;
+            SpecialAbility = specialAbility;
+            HasWings = hasWings;
+            GlowsInDark = glowsInDark;
+            FavoriteActivity = favoriteActivity;
+            Transportation = transportation;
+            FavoriteExercise = favoriteExercise;
+            PreferredSoap = preferredSoap;
+            SpecialTalent = specialTalent;
+        }
+
+        public override string ToString()
+        {
+            return $"Has Tail         : {(HasTail ? "Yes" : "No")}\n" +
+                   $"Favorite Food    : {FavoriteFood}\n" +
+                   $"Special Ability  : {SpecialAbility}\n" +
+                   $"Has Wings        : {(HasWings ? "Yes" : "No")}\n" +
+                   $"Glows in Dark    : {(GlowsInDark ? "Yes" : "No")}\n" +
+                   $"Favorite Activity: {FavoriteActivity}\n" +
+                   $"Transportation   : {Transportation}\n" +
+                   $"Favorite Exercise: {FavoriteExercise}\n" +
+                   $"Preferred Soap   : {PreferredSoap}\n" +
+                   $"Special Talent   : {SpecialTalent}";
+        }
+    }
+
     class Pet
     {
-        private string name;  // Encapsulation ✅
+        private string name;
 
-        // Constructor ✅
         public Pet()
         {
             Console.WriteLine("\n --- New Game ---");
@@ -14,7 +110,6 @@ namespace UnidentifiedSociety
             CreatePet();
         }
 
-        // "this" Keyword ✅
         private void SetPetName()
         {
             while (true)
@@ -105,16 +200,10 @@ namespace UnidentifiedSociety
         {
             SetPetName();
 
-            // Planet
-            string planet = AskQuestion("\n2. What planet is your alien from?", new[]
-            {
-                "Aqua Planet Pampanga",
-                "Namec",
-                "Kepler 22B",
-                "Glacia",
-                "Titan"
-            }, new[]
-            {
+            
+            string planet = AskQuestion("\n2. What planet is your alien from?", new[] {
+                "Aqua Planet Pampanga", "Namec", "Kepler 22B", "Glacia", "Titan"
+            }, new[] {
                 " - \"Endless oceans, karaoke, and glowing seafood feasts. Party central!\"",
                 " - \"Green grass, blue skies, and chill warriors. Pure Zen.\"",
                 " - \"Humid, cozy, and masarap magluto!\"",
@@ -122,63 +211,41 @@ namespace UnidentifiedSociety
                 " - \"Methane rain, nitrogen pools, and frosty vibes. Cool in every way.\""
             });
 
-            // Skin color selection
-            string skinColor = AskQuestion("\n3. Choose your alien's skin color:", new[]
-            {
+            string skinColor = AskQuestion("\n3. Choose your alien's skin color:", new[] {
                 "Green", "Gold", "Purple", "Chrome", "Charcoal"
             });
 
-            // Eyes count
             int eyes = AskNumericQuestion("\n4. How many eyes does your alien have (0-4)?", 0, 4);
-
-            // Eye color
-            string eyeColor = AskQuestion("\n5. Pick your alien's eye color:", new[]
-            {
+            string eyeColor = AskQuestion("\n5. Pick your alien's eye color:", new[] {
                 "Black", "Yellow", "Orange", "White", "Brown"
             });
 
-            // Hairstyle
-            string hairstyle = AskQuestion("\n6. Choose your alien's hairstyle:", new[]
-            {
+            string hairstyle = AskQuestion("\n6. Choose your alien's hairstyle:", new[] {
                 "V-Cut Burst Fade", "Mullet", "Avatar Cut", "2 by 3", "Kalbo"
             });
 
-            // Arms count
             int arms = AskNumericQuestion("\n7. How many arms does your alien have (0-4)?", 0, 4);
-
-            // Body type
-            string bodyType = AskQuestion("\n8. What is your alien's body type?", new[]
-            {
+            string bodyType = AskQuestion("\n8. What is your alien's body type?", new[] {
                 "Slimy", "Furry", "Smooth", "Scaly", "Spiky"
             });
 
-            // Clothing
-            string clothe = AskQuestion("\n9. What is your preferred clothing?", new[]
-            {
+            string clothe = AskQuestion("\n9. What is your preferred clothing?", new[] {
                 "Shirt", "Long sleeve", "Dress", "Crop top", "Jumpsuit"
             });
 
-            // Accessory
-            string accessory = AskQuestion("\n10. Choose an accessory:", new[]
-            {
+            string accessory = AskQuestion("\n10. Choose an accessory:", new[] {
                 "Hat", "Crown", "Rolex", "Eye Glasses", "Bandana"
             });
 
-            // Tail
             bool hasTail = AskQuestion("\n11. Does your alien have a tail?", new[] { "Yes", "No" }) == "Yes";
 
-            // Favorite food
-            string favoriteFood = AskQuestion("\n12. What is your alien's favorite food?", new[]
-            {
+            string favoriteFood = AskQuestion("\n12. What is your alien's favorite food?", new[] {
                 "Diwata pares", "Coco Crunch", "Graham Bar", "San Marino Maanghang", "Calderetang Aso"
             });
 
-            // Special ability
-            string specialAbility = AskQuestion("\n13. Choose your alien's special ability:", new[]
-            {
+            string specialAbility = AskQuestion("\n13. Choose your alien's special ability:", new[] {
                 "Invisibility", "Shape-shifting", "Telepathy", "Super speed", "Nonchalant"
-            }, new[]
-            {
+            }, new[] {
                 " - \"Perfect for sneaking around or making a dramatic exit. Out of sight, out of mind!\"",
                 " - \"Become anyone or anything. Master of disguise with endless possibilities!\"",
                 " - \"No need for words. Read minds and communicate with a thought!\"",
@@ -186,18 +253,12 @@ namespace UnidentifiedSociety
                 " - \"Stay calm, cool, and collected in any situation. Nothing fazes you.\""
             });
 
-            // Wings
             bool hasWings = AskQuestion("\n14. Does your alien have wings?", new[] { "Yes", "No" }) == "Yes";
-
-            // Glows in the dark
             bool glowsInDark = AskQuestion("\n15. Does your alien glow in the dark?", new[] { "Yes", "No" }) == "Yes";
 
-            // Favorite activity
-            string favoriteActivity = AskQuestion("\n16. What is your alien's favorite activity?", new[]
-            {
+            string favoriteActivity = AskQuestion("\n16. What is your alien's favorite activity?", new[] {
                 "Playing Video Games", "Taking over the world", "Guitar", "Programming", "Cyberbullying"
-            }, new[]
-            {
+            }, new[] {
                 " - \"Leveling up, collecting loot, and mastering every game in the galaxy!\"",
                 " - \"World domination? Just another day at the office.\"",
                 " - \"Shredding solos and creating intergalactic rock anthems.\"",
@@ -205,12 +266,9 @@ namespace UnidentifiedSociety
                 " - \"Keyboard warrior, causing chaos across the web.\""
             });
 
-            // Transportation
-            string transportation = AskQuestion("\n17. What is your alien's preferred mode of transportation?", new[]
-            {
+            string transportation = AskQuestion("\n17. What is your alien's preferred mode of transportation?", new[] {
                 "Hoverboard", "Space Scooter", "Teleportation", "Flying Saucer", "Walking"
-            }, new[]
-            {
+            }, new[] {
                 " - \"Glide through the air with ease. Speed and style in one!\"",
                 " - \"Zip around with a bit of flair. It's a short-distance, intergalactic joyride!\"",
                 " - \"Why bother with roads when you can just blink from one place to another?\"",
@@ -218,47 +276,31 @@ namespace UnidentifiedSociety
                 " - \"Who needs fancy tech? Sometimes, the journey is best taken one step at a time.\""
             });
 
-            // Favorite exercise
-            string favoriteExercise = AskQuestion("\n18. What is your alien's favorite exercise?", new[]
-            {
+            string favoriteExercise = AskQuestion("\n18. What is your alien's favorite exercise?", new[] {
                 "Jog", "Climb rocks", "Go to another planet", "Pushups", "Arnis Advance Sinawali"
             });
 
-            // Preferred soap
-            string preferredSoap = AskQuestion("\n19. What is your alien's preferred soap?", new[]
-            {
+            string preferredSoap = AskQuestion("\n19. What is your alien's preferred soap?", new[] {
                 "Kagayaku Soap", "Kojic", "Sulfur Soap", "Tide Bar", "Bioderm"
             });
 
-            // Special talent
-            string specialTalent = AskQuestion("\n20. What is your alien's special talent?", new[]
-            {
+            string specialTalent = AskQuestion("\n20. What is your alien's special talent?", new[] {
                 "Magic", "Acting", "Painting", "Playing an Instrument", "Singing"
             });
 
-            // Printing Pet Features
+            // Instantiate structs
+            var physicalAttributes = new PhysicalAttributes(eyes, arms, skinColor);
+            var appearanceAttributes = new AppearanceAttributes(planet, eyeColor, hairstyle, bodyType, clothe, accessory);
+            var otherAttributes = new OtherAttributes(hasTail, favoriteFood, specialAbility, hasWings, glowsInDark, favoriteActivity,
+                                                     transportation, favoriteExercise, preferredSoap, specialTalent);
+
+            // Print the pet details
             Console.Clear();
             Console.WriteLine("\nYou have successfully created your very own alien pet!");
             Console.WriteLine("\nName             : " + name);
-            Console.WriteLine("Planet Origin    : " + planet);
-            Console.WriteLine("Skin Color       : " + skinColor);
-            Console.WriteLine("Eye Count        : " + eyes);
-            Console.WriteLine("Eye Color        : " + eyeColor);
-            Console.WriteLine("Hairstyle        : " + hairstyle);
-            Console.WriteLine("Arm Count        : " + arms);
-            Console.WriteLine("Body Type        : " + bodyType);
-            Console.WriteLine("Clothing         : " + clothe);
-            Console.WriteLine("Accessory        : " + accessory);
-            Console.WriteLine("Has Tail         : " + (hasTail ? "Yes" : "No"));
-            Console.WriteLine("Favorite Food    : " + favoriteFood);
-            Console.WriteLine("Special Ability  : " + specialAbility);
-            Console.WriteLine("Has Wings        : " + (hasWings ? "Yes" : "No"));
-            Console.WriteLine("Glows in Dark    : " + (glowsInDark ? "Yes" : "No"));
-            Console.WriteLine("Favorite Activity: " + favoriteActivity);
-            Console.WriteLine("Transportation   : " + transportation);
-            Console.WriteLine("Favorite Exercise: " + favoriteExercise);
-            Console.WriteLine("Preferred Soap   : " + preferredSoap);
-            Console.WriteLine("Special Talent   : " + specialTalent);
+            Console.WriteLine(physicalAttributes);
+            Console.WriteLine(appearanceAttributes);
+            Console.WriteLine(otherAttributes);
         }
     }
 }
