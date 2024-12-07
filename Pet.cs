@@ -1,103 +1,104 @@
-﻿using System;
+﻿    using System;
 
-namespace UnidentifiedSociety
-{
-    // Struct para sa physical attribute ng alien kopal!
-    struct PhysicalAttributes
+    namespace UnidentifiedSociety
     {
-        public int Eyes { get; set; }
-        public int Arms { get; set; }
-        public string SkinColor { get; set; }
-
-        public PhysicalAttributes(int eyes, int arms, string skinColor)
+        // Struct para sa physical attribute ng alien kopal!
+        struct PhysicalAttributes
         {
-            Eyes = eyes;
-            Arms = arms;
-            SkinColor = skinColor;
+            public int Eyes { get; set; }
+            public int Arms { get; set; }
+            public string SkinColor { get; set; }
+
+            public PhysicalAttributes(int eyes, int arms, string skinColor)
+            {
+                Eyes = eyes;
+                Arms = arms;
+                SkinColor = skinColor;
+            }
+
+            public override string ToString()
+            {
+                return $"Eye Count        : {Eyes}\n" +
+                       $"Arm Count        : {Arms}\n" +
+                       $"Skin Color       : {SkinColor}";
+            }
         }
 
-        public override string ToString()
+        // Struct para sa appearance ng alien kopal!
+        struct AppearanceAttributes
         {
-            return $"Eye Count        : {Eyes}\n" +
-                   $"Arm Count        : {Arms}\n" +
-                   $"Skin Color       : {SkinColor}";
+            public string Planet { get; set; }
+            public string EyeColor { get; set; }
+            public string Hairstyle { get; set; }
+            public string BodyType { get; set; }
+            public string Clothing { get; set; }
+            public string Accessory { get; set; }
+
+            public AppearanceAttributes(string planet, string eyeColor, string hairstyle, string bodyType, string clothing, string accessory)
+            {
+                Planet = planet;
+                EyeColor = eyeColor;
+                Hairstyle = hairstyle;
+                BodyType = bodyType;
+                Clothing = clothing;
+                Accessory = accessory;
+            }
+
+            public override string ToString()
+            {
+                return $"Planet Origin    : {Planet}\n" +
+                       $"Eye Color        : {EyeColor}\n" +
+                       $"Hairstyle        : {Hairstyle}\n" +
+                       $"Body Type        : {BodyType}\n" +
+                       $"Clothing         : {Clothing}\n" +
+                       $"Accessory        : {Accessory}";
+            }
         }
-    }
 
-    // Struct para sa appearance ng alien kopal!
-    struct AppearanceAttributes
-    {
-        public string Planet { get; set; }
-        public string EyeColor { get; set; }
-        public string Hairstyle { get; set; }
-        public string BodyType { get; set; }
-        public string Clothing { get; set; }
-        public string Accessory { get; set; }
-
-        public AppearanceAttributes(string planet, string eyeColor, string hairstyle, string bodyType, string clothing, string accessory)
+        // Struct sa ibang attribute ng alien kopal!
+        struct OtherAttributes
         {
-            Planet = planet;
-            EyeColor = eyeColor;
-            Hairstyle = hairstyle;
-            BodyType = bodyType;
-            Clothing = clothing;
-            Accessory = accessory;
-        }
-
-        public override string ToString()
-        {
-            return $"Planet Origin    : {Planet}\n" +
-                   $"Eye Color        : {EyeColor}\n" +
-                   $"Hairstyle        : {Hairstyle}\n" +
-                   $"Body Type        : {BodyType}\n" +
-                   $"Clothing         : {Clothing}\n" +
-                   $"Accessory        : {Accessory}";
-        }
-    }
-
-    // Struct sa ibang attribute ng alien kopal!
-    struct OtherAttributes
-    {
-        public bool HasTail { get; set; }
-        public string FavoriteFood { get; set; }
-        public string SpecialAbility { get; set; }
-        public bool HasWings { get; set; }
-        public bool GlowsInDark { get; set; }
-        public string FavoriteActivity { get; set; }
-        public string Transportation { get; set; }
-        public string FavoriteExercise { get; set; }
-        public string PreferredSoap { get; set; }
-        public string SpecialTalent { get; set; }
+            public bool HasTail { get; set; }
+            public string FavoriteFood { get; set; }
+            public string SpecialAbility { get; set; }
+            public bool HasWings { get; set; }
+            public bool GlowsInDark { get; set; }
+            public string FavoriteActivity { get; set; }
+            public string Transportation { get; set; }
+            public string FavoriteExercise { get; set; }
+            public string PreferredSoap { get; set; }
+            public string SpecialTalent { get; set; }
+           
 
         public OtherAttributes(bool hasTail, string favoriteFood, string specialAbility, bool hasWings, bool glowsInDark,
-                               string favoriteActivity, string transportation, string favoriteExercise, string preferredSoap, string specialTalent)
-        {
-            HasTail = hasTail;
-            FavoriteFood = favoriteFood;
-            SpecialAbility = specialAbility;
-            HasWings = hasWings;
-            GlowsInDark = glowsInDark;
-            FavoriteActivity = favoriteActivity;
-            Transportation = transportation;
-            FavoriteExercise = favoriteExercise;
-            PreferredSoap = preferredSoap;
-            SpecialTalent = specialTalent;
-        }
+                                   string favoriteActivity, string transportation, string favoriteExercise, string preferredSoap, string specialTalent)
+            {
+                HasTail = hasTail;
+                FavoriteFood = favoriteFood;
+                SpecialAbility = specialAbility;
+                HasWings = hasWings;
+                GlowsInDark = glowsInDark;
+                FavoriteActivity = favoriteActivity;
+                Transportation = transportation;
+                FavoriteExercise = favoriteExercise;
+                PreferredSoap = preferredSoap;
+                SpecialTalent = specialTalent;
+            }
 
-        public override string ToString()
-        {
-            return $"Has Tail         : {(HasTail ? "Yes" : "No")}\n" +
-                   $"Favorite Food    : {FavoriteFood}\n" +
-                   $"Special Ability  : {SpecialAbility}\n" +
-                   $"Has Wings        : {(HasWings ? "Yes" : "No")}\n" +
-                   $"Glows in Dark    : {(GlowsInDark ? "Yes" : "No")}\n" +
-                   $"Favorite Activity: {FavoriteActivity}\n" +
-                   $"Transportation   : {Transportation}\n" +
-                   $"Favorite Exercise: {FavoriteExercise}\n" +
-                   $"Preferred Soap   : {PreferredSoap}\n" +
-                   $"Special Talent   : {SpecialTalent}";
+            public override string ToString()
+            {
+                return $"Has Tail         : {(HasTail ? "Yes" : "No")}\n" +
+                       $"Favorite Food    : {FavoriteFood}\n" +
+                       $"Special Ability  : {SpecialAbility}\n" +
+                       $"Has Wings        : {(HasWings ? "Yes" : "No")}\n" +
+                       $"Glows in Dark    : {(GlowsInDark ? "Yes" : "No")}\n" +
+                       $"Favorite Activity: {FavoriteActivity}\n" +
+                       $"Transportation   : {Transportation}\n" +
+                       $"Favorite Exercise: {FavoriteExercise}\n" +
+                       $"Preferred Soap   : {PreferredSoap}\n" +
+                       $"Special Talent   : {SpecialTalent}";
+            }
         }
-    }
 
     class Pet
     {
@@ -190,9 +191,12 @@ namespace UnidentifiedSociety
                 {
                     return choices[index - 1];
                 }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid input. Try again.\n");
+                }
 
-                Console.Clear();
-                Console.WriteLine("Invalid input. Try again.\n");
             }
         }
 
@@ -200,7 +204,9 @@ namespace UnidentifiedSociety
         {
             SetPetName();
 
-            
+            DateTime lastPlayed = DateTime.UtcNow;
+
+
             string planet = AskQuestion("\n2. What planet is your alien from?", new[] {
                 "Aqua Planet Pampanga", "Namec", "Kepler 22B", "Glacia", "Titan"
             }, new[] {
@@ -301,6 +307,8 @@ namespace UnidentifiedSociety
             Console.WriteLine(physicalAttributes);
             Console.WriteLine(appearanceAttributes);
             Console.WriteLine(otherAttributes);
+
+            DatabaseHelper.InsertCharacter(name, physicalAttributes, appearanceAttributes, otherAttributes).Wait();
         }
     }
 }

@@ -20,7 +20,15 @@ namespace UnidentifiedSociety
     {
         public override void Start()
         {
-            Console.WriteLine("\nPlace holder palang po!");
+            //try
+            //{
+            //    Console.WriteLine("\nYour recenet Alienm character");
+            //    await DatabaseHelper.SelectMostRecentCharacter();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"An error occurred while loading the game: {ex.Message}");
+            //}
         }
     }
 
