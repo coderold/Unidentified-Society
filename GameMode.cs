@@ -20,15 +20,44 @@ namespace UnidentifiedSociety
     {
         public override void Start()
         {
-            //try
-            //{
-            //    Console.WriteLine("\nYour recenet Alienm character");
-            //    await DatabaseHelper.SelectMostRecentCharacter();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine($"An error occurred while loading the game: {ex.Message}");
-            //}
+            try
+            {
+                Console.WriteLine("\n--- Load Game ---");
+
+           
+                var characters = DatabaseHelper.GetAllCharacters().Result;
+
+                if (characters.Count == 0)
+                {
+                    Console.WriteLine("No saved characters found. Please create New character");
+                    return;
+                }
+
+                Console.WriteLine("\nAvailable Characters:\n");
+                foreach (var character in characters)
+                {
+                    Console.WriteLine($"- {character.Key}");
+                }
+
+                Console.Write("\nEnter the name of the character you want to load: ");
+                string characterName = Console.ReadLine();
+
+                if (characters.ContainsKey(characterName))
+                {
+                    Console.Clear();
+                    Console.WriteLine($"\n--- Character Info: {characterName} ---");
+                    Console.WriteLine(characters[characterName]);
+                   
+                }
+                else
+                {
+                    Console.WriteLine($"\nCharacter '{characterName}' not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while loading the game: {ex.Message}");
+            }
         }
     }
 

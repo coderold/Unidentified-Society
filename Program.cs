@@ -151,6 +151,7 @@ namespace UnidentifiedSociety
             Console.WriteLine("[1] YES");
             Console.WriteLine("[2] NO");
             Console.Write(":");
+
             switch (Console.ReadLine())
             {
                 case "1":

@@ -25,6 +25,8 @@ namespace UnidentifiedSociety
             Console.WriteLine("Character saved successfully!");
         }
 
+
+
         public static async Task SelectAllCharacters()
         {
             var characters = await firebaseClient
@@ -38,6 +40,19 @@ namespace UnidentifiedSociety
                 Console.WriteLine("----------------------------");
             }
         }
+
+
+
+        public static async Task<Dictionary<string, object>> GetAllCharacters()
+        {
+            var characters = await firebaseClient
+                .Child("Characters")
+                .OnceAsync<object>();
+
+            return characters.ToDictionary(c => c.Key, c => c.Object);
+        }
+
+
 
         public static async Task DeleteCharacter(string name)
         {
