@@ -92,6 +92,7 @@ namespace UnidentifiedSociety
             {
                 Console.Clear();
                 Console.WriteLine("Invalid input. Please enter a valid number.\n");
+                PrintTitle();
                 MainMenu();
             }
             catch (Exception ex)
@@ -156,6 +157,7 @@ namespace UnidentifiedSociety
             {
                 case "1":
                     Console.Clear();
+
                     new Game();
                     break;
                 case "2":
