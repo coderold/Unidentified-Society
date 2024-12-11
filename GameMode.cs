@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 
 namespace UnidentifiedSociety
 {
@@ -24,42 +25,164 @@ namespace UnidentifiedSociety
             {
                 Console.WriteLine("\n--- Load Game ---");
 
-           
                 var characters = DatabaseHelper.GetAllCharacters().Result;
 
                 if (characters.Count == 0)
                 {
-                    Console.WriteLine("No saved characters found. Please create New character");
+                    Console.WriteLine("No saved characters found. Please create a new character.");
                     return;
                 }
 
-                Console.WriteLine("\nAvailable Characters:\n");
-                foreach (var character in characters)
+                // -Load Game[1] View all characters[2] View a specific character [3] Go back to main menu * tapos sa 1 and 2, dapat may option palagi na go back to main menu
+                while (true)
                 {
-                    Console.WriteLine($"- {character.Key}");
-                }
+         
+                    Console.WriteLine("\nAvailable Characters:\n");
+                    foreach (var character in characters)
+                    {
+                        Console.WriteLine($"- {character.Key}");
+                    }
 
-                Console.Write("\nEnter the name of the character you want to load: ");
-                string characterName = Console.ReadLine();
+                    Console.WriteLine("\n[1] View all characters");
+                    Console.WriteLine("[2] View a specific character");
+                    Console.WriteLine("[3] Delete a character");
+                    Console.WriteLine("[4] Go back to Main Menu");
+                    Console.Write(": ");
+                    string choice = Console.ReadLine();
 
-                if (characters.ContainsKey(characterName))
-                {
-                    Console.Clear();
-                    Console.WriteLine($"\n--- Character Info: {characterName} ---");
-                    Console.WriteLine(characters[characterName]);
-                   
-                }
-                else
-                {
-                    Console.WriteLine($"\nCharacter '{characterName}' not found.");
+                    switch (choice)
+                    {
+                        case "1":
+                          
+                            DisplayAllCharacters(characters);
+                            break;
+                        case "2":
+                            ViewSpecificCharacter(characters);
+                            break;
+                        case "3":
+                            DeleteCharacter();
+                            break;
+                        case "4":
+                            Console.Clear();
+                            return;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Invalid input. Please try again.");
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while loading the game: {ex.Message}");
+                Console.WriteLine($"error {ex.Message}");
+            }
+        }
+
+        // DisplayAll character  -Load Game --what if walang char to display? (view all / view specific) 
+        private void DisplayAllCharacters(Dictionary<string, object> characters)
+        {
+            Console.Clear();
+            Console.WriteLine("--- All Character Information ---");
+            foreach (var character in characters)
+            {
+                Console.WriteLine($"Name: {character.Key}");
+                Console.WriteLine($"Details: {character.Value}");
+                Console.WriteLine("--------------------------------");
+            }
+
+            GoBackToMainMenu();   // -Load Game / View all characters --pakilagay sa ilalim yung Go back to main menu
+        }
+
+        // View a specific character's info
+        private void ViewSpecificCharacter(Dictionary<string, object> characters)
+        {
+            Console.Clear();
+            Console.Write("\nEnter the name of the character you want to view: ");
+            string characterName = Console.ReadLine();
+
+            if (characters.ContainsKey(characterName))
+            {
+                Console.Clear();
+                Console.WriteLine($"\n--- Character Info: {characterName} ---");
+                Console.WriteLine(characters[characterName]);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"\nCharacter '{characterName}' not found.");
+            }
+
+            GoBackToMainMenu();
+        }
+
+        // -Delete Character--paki-lista muna lahat ng names ng characters, para madali malaman kung sino ide-delete-Delete Character"Are you sure to delete this character?"[1] Yes[2] No
+        private void DeleteCharacter()
+        {
+            var characters = DatabaseHelper.GetAllCharacters().Result;
+
+            if (characters.Count == 0)
+            {
+                Console.WriteLine("No characters available to delete.");
+                return;
+            }
+
+            Console.Clear();
+            Console.WriteLine("\nAvailable characters to delete:");
+            foreach (var character in characters)
+            {
+                Console.WriteLine($"- {character.Key}");
+            }
+
+            Console.Write("\nEnter the name of the character to delete: ");
+            string name = Console.ReadLine();
+
+            if (!characters.ContainsKey(name))
+            {
+                Console.Clear();
+                Console.WriteLine($"Character '{name}' not found.");
+                return;
+            }
+
+            Console.WriteLine($"Are you sure you want to delete the character '{name}'?");
+            Console.WriteLine("[1] Yes");
+            Console.WriteLine("[2] No");
+            Console.Write(": ");
+            string confirmation = Console.ReadLine();
+
+            if (confirmation == "1")
+            {
+                DatabaseHelper.DeleteCharacter(name).Wait();
+            }
+            else
+            {
+                Console.WriteLine("Character deletion canceled.");
+            }
+
+            GoBackToMainMenu();
+        }
+
+        // Option to go back to the main menu
+        private void GoBackToMainMenu()
+        {
+            Console.WriteLine("\nGo back to Main Menu?");
+            Console.WriteLine("[1] YES");
+            Console.WriteLine("[2] NO");
+            Console.Write(": ");
+
+            string input = Console.ReadLine();
+            if (input == "1")
+            {
+                Console.Clear();
+                new Game();
+            }
+            else
+            {
+                Console.WriteLine("\nThanks for Playing!");
+                Environment.Exit(1);
             }
         }
     }
+
 
     // Inherited class with method overriding
     class CampaignMode : GameMode

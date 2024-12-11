@@ -23,6 +23,8 @@ namespace UnidentifiedSociety
                     OtherAttributes = otherAttributes
                 });
             Console.WriteLine("Character saved successfully!");
+
+           
         }
 
 
@@ -53,23 +55,36 @@ namespace UnidentifiedSociety
         }
 
 
+        // revisions:-character name --"Character name already taken"
+        public static async Task<bool> IsCharacterNameTaken(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return false;
 
+            var characters = await firebaseClient
+                .Child("Characters")
+                .OnceAsync<object>();
+
+            return characters.Any(c => c.Key.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+
+
+        // confrimation 
         public static async Task DeleteCharacter(string name)
         {
             try
             {
-                
                 if (string.IsNullOrWhiteSpace(name))
                 {
                     Console.WriteLine("Error: Character name cannot be empty.");
                     return;
                 }
 
-               
                 var character = await firebaseClient
                     .Child("Characters")
                     .Child(name)
-                    .OnceSingleAsync<object>(); 
+                    .OnceSingleAsync<object>();
 
                 if (character == null)
                 {
@@ -77,7 +92,6 @@ namespace UnidentifiedSociety
                     return;
                 }
 
-                
                 await firebaseClient
                     .Child("Characters")
                     .Child(name)
@@ -87,10 +101,13 @@ namespace UnidentifiedSociety
             }
             catch (Exception ex)
             {
-               
                 Console.WriteLine($"An error occurred while deleting the character: {ex.Message}");
             }
         }
-
     }
 }
+
+        
+
+    
+

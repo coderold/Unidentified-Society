@@ -123,6 +123,12 @@
 
                 if (!string.IsNullOrWhiteSpace(input) && input.Length <= 8)
                 {
+                    if (DatabaseHelper.IsCharacterNameTaken(input).Result)
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Character name '{input}' is already taken. Please choose a different name.\n");
+                        continue;
+                    }
                     this.name = input;
                     break;
                 }

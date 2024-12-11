@@ -39,8 +39,7 @@ namespace UnidentifiedSociety
                 Console.WriteLine("[2] LOAD GAME ");
                 Console.WriteLine("[3] CAMPAIGN MODE ");
                 Console.WriteLine("[4] CREDITS ");
-                Console.WriteLine("[5] CHARACTER MANAGEMENT ");
-                Console.WriteLine("[6] EXIT ");
+                Console.WriteLine("[5] EXIT ");
 
                 byte MainMenuInput = Convert.ToByte(Console.ReadLine());
 
@@ -73,11 +72,6 @@ namespace UnidentifiedSociety
                         break;
                     case 5:
                         Console.Clear();
-                        CharacterManagementMenu();
-                        BackToMainMenu();
-                        break;
-                    case 6:
-                        Console.Clear();
                         Console.WriteLine("\nThanks for Playing!");
                         Environment.Exit(1);
                         break;
@@ -102,49 +96,6 @@ namespace UnidentifiedSociety
 
         }
 
-
-        void CharacterManagementMenu()
-        {
-            try
-            {
-                Console.WriteLine("\n--- Character Management ---");
-                Console.WriteLine("[1] Display All Characters");
-                Console.WriteLine("[2] Delete a Character");
-                Console.WriteLine("[3] Back to Main Menu");
-
-                byte input = Convert.ToByte(Console.ReadLine());
-
-                switch (input)
-                {
-                    case 1:
-                        Console.Clear();
-                        DisplayAllCharacters();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        DeleteCharacter();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        return;
-                    default:
-                        Console.WriteLine("Invalid input. Please select a valid option.");
-                        CharacterManagementMenu();
-                        break;
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid input. Please enter a valid number.\n");
-                CharacterManagementMenu();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-        }
-
-
         void BackToMainMenu()
         {
 
@@ -153,37 +104,34 @@ namespace UnidentifiedSociety
             Console.WriteLine("[2] NO");
             Console.Write(":");
 
-            switch (Console.ReadLine())
+            try
             {
-                case "1":
-                    Console.Clear();
+                byte input = Convert.ToByte(Console.ReadLine());
 
-                    new Game();
-                    break;
-                case "2":
-                    Console.WriteLine("\nThanks for Playing!");
-                    System.Environment.Exit(1);
-                    break;
-                default:
-                    Console.Clear();
-                    Console.WriteLine("Invalid input. Try again.\n");
-                    BackToMainMenu();
-                    break;
+                switch (input)
+                {
+                    case 1:
+                        Console.Clear();
+                        new Game();
+
+                        break;
+                    case 2:
+                        Console.WriteLine("\nThanks for Playing!");
+                        System.Environment.Exit(1);
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid input. Try again.\n");
+                        BackToMainMenu();
+                        break;
+                }
+            } catch (FormatException e)
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid input. Try again.\n");
+                BackToMainMenu();
             }
         }
-        void DisplayAllCharacters()
-        {
-            Console.Clear();
-            Console.WriteLine("Displaying all characters...");
-            DatabaseHelper.SelectAllCharacters();
-        }
-
-        void DeleteCharacter()
-        {
-            Console.Clear();
-            Console.Write("Enter the name of the character to delete: ");
-            string name = Console.ReadLine();
-            DatabaseHelper.DeleteCharacter(name);
-        }
+    } 
     }
-}
+
