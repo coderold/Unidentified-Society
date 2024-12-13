@@ -102,6 +102,7 @@ namespace UnidentifiedSociety
             {
                 Console.WriteLine("No specific characters available to view");
                 return;
+                
             }
             Console.WriteLine("\nAvailable Characters:\n");
             foreach (var character in characters)
@@ -133,6 +134,7 @@ namespace UnidentifiedSociety
                 var characters = DatabaseHelper.GetAllCharacters().Result; 
                 if (characters.Count == 0)
                 {
+                    Console.Clear();
                     Console.WriteLine("No characters available to delete.");
                     return;
                 }
