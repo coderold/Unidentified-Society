@@ -78,6 +78,11 @@ namespace UnidentifiedSociety
         private void DisplayAllCharacters(Dictionary<string, object> characters)
         {
             Console.Clear();
+            if (characters.Count == 0)
+            {
+                Console.WriteLine("No characters available to display");
+                return;
+            }
             Console.WriteLine("--- All Character Information ---");
             foreach (var character in characters)
             {
@@ -92,6 +97,12 @@ namespace UnidentifiedSociety
         private void ViewSpecificCharacter(Dictionary<string, object> characters)
         {
             Console.Clear();
+
+            if (characters.Count == 0)
+            {
+                Console.WriteLine("No specific characters available to view");
+                return;
+            }
             Console.WriteLine("\nAvailable Characters:\n");
             foreach (var character in characters)
             {
