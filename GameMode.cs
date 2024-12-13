@@ -33,8 +33,7 @@ namespace UnidentifiedSociety
                     return;
                 }
 
-           
-                DisplayMenu(characters);
+                DisplayMenu();
             }
             catch (Exception ex)
             {
@@ -42,10 +41,11 @@ namespace UnidentifiedSociety
             }
         }
 
-        private void DisplayMenu(Dictionary<string, object> characters)
+        private void DisplayMenu()
         {
             while (true)
             {
+                var characters = DatabaseHelper.GetAllCharacters().Result;
                 Console.WriteLine("\n[1] View all characters");
                 Console.WriteLine("[2] View a specific character");
                 Console.WriteLine("[3] Delete a character");
@@ -66,7 +66,7 @@ namespace UnidentifiedSociety
                         break;
                     case "4":
                         Console.Clear();
-                        return; 
+                        return;
                     default:
                         Console.Clear();
                         Console.WriteLine("Invalid input. Please try again.");
@@ -117,16 +117,15 @@ namespace UnidentifiedSociety
 
         private void DeleteCharacter()
         {
-            var characters = DatabaseHelper.GetAllCharacters().Result;
-
-            if (characters.Count == 0)
+            while (true)
             {
-                Console.WriteLine("No characters available to delete.");
-                return;
-            }
+                var characters = DatabaseHelper.GetAllCharacters().Result; 
+                if (characters.Count == 0)
+                {
+                    Console.WriteLine("No characters available to delete.");
+                    return;
+                }
 
-            while (true) 
-            {
                 Console.Clear();
                 Console.WriteLine("\nAvailable characters to delete:");
                 foreach (var character in characters)
@@ -142,7 +141,7 @@ namespace UnidentifiedSociety
                     Console.WriteLine($"\nCharacter '{name}' not found. Please try again.");
                     Console.WriteLine("Press any key to input another valid name");
                     Console.ReadKey();
-                    continue; 
+                    continue;
                 }
 
                 Console.WriteLine($"Are you sure you want to delete the character '{name}'?");
@@ -165,15 +164,14 @@ namespace UnidentifiedSociety
                     Console.WriteLine("Invalid input. Returning to the menu.");
                 }
 
-                AskToGoBack(); 
-                return; 
+                AskToGoBack();
+                return;
             }
         }
 
-
         private void AskToGoBack()
         {
-            while (true) 
+            while (true)
             {
                 Console.WriteLine("\nDo you want to go back to the main menu?");
                 Console.WriteLine("[1] Yes");
@@ -184,14 +182,14 @@ namespace UnidentifiedSociety
                 if (input == "1")
                 {
                     Console.Clear();
-                    return; 
+                    return;
                 }
                 else if (input == "2")
                 {
                     Console.WriteLine("\nThanks for playing!");
                     Console.WriteLine("Press any key to exit.");
                     Console.ReadKey();
-                    Environment.Exit(0); 
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -201,6 +199,7 @@ namespace UnidentifiedSociety
             }
         }
     }
+
 
 
     // Inherited class with method overriding
