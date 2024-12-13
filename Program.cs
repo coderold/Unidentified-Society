@@ -71,9 +71,10 @@ namespace UnidentifiedSociety
                         BackToMainMenu();
                         break;
                     case 5:
-                        Console.Clear();
                         Console.WriteLine("\nThanks for Playing!");
-                        Environment.Exit(1);
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
+                        System.Environment.Exit(1);
                         break;
                     default:
                         Console.Clear();
@@ -117,6 +118,8 @@ namespace UnidentifiedSociety
                         break;
                     case 2:
                         Console.WriteLine("\nThanks for Playing!");
+                        Console.WriteLine("Press any key to exit");
+                        Console.ReadKey();
                         System.Environment.Exit(1);
                         break;
                     default:
