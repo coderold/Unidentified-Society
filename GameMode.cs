@@ -12,8 +12,6 @@ namespace UnidentifiedSociety
     abstract class GameMode : IGameMode
     {
         public abstract void Start();
-
-       
     }
 
     // Inherited class with method overriding
@@ -157,6 +155,7 @@ namespace UnidentifiedSociety
                     continue;
                 }
 
+                Console.WriteLine();
                 Console.WriteLine($"Are you sure you want to delete the character '{name}'?");
                 Console.WriteLine("[1] Yes");
                 Console.WriteLine("[2] No");
@@ -186,7 +185,7 @@ namespace UnidentifiedSociety
         {
             while (true)
             {
-                Console.WriteLine("\nDo you want to go back to the main menu?");
+                Console.WriteLine("\nDo you want to go back?");
                 Console.WriteLine("[1] Yes");
                 Console.WriteLine("[2] No");
                 Console.Write(": ");
@@ -212,8 +211,6 @@ namespace UnidentifiedSociety
             }
         }
     }
-
-
 
     // Inherited class with method overriding
     class CampaignMode : GameMode
@@ -271,4 +268,3 @@ namespace UnidentifiedSociety
         }
     }
 }
-

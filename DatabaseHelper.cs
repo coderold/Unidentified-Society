@@ -23,11 +23,7 @@ namespace UnidentifiedSociety
                     OtherAttributes = otherAttributes
                 });
             Console.WriteLine("Character saved successfully!");
-
-           
         }
-
-
 
         public static async Task SelectAllCharacters()
         {
@@ -43,8 +39,6 @@ namespace UnidentifiedSociety
             }
         }
 
-
-
         public static async Task<Dictionary<string, object>> GetAllCharacters()
         {
             var characters = await firebaseClient
@@ -53,7 +47,6 @@ namespace UnidentifiedSociety
 
             return characters.ToDictionary(c => c.Key, c => c.Object);
         }
-
 
         // revisions:-character name --"Character name already taken"
         public static async Task<bool> IsCharacterNameTaken(string name)
@@ -67,8 +60,6 @@ namespace UnidentifiedSociety
 
             return characters.Any(c => c.Key.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
-
-
 
         // confrimation 
         public static async Task DeleteCharacter(string name)
@@ -106,8 +97,3 @@ namespace UnidentifiedSociety
         }
     }
 }
-
-        
-
-    
-
