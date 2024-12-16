@@ -97,6 +97,7 @@ namespace UnidentifiedSociety
                     .Child(name)
                     .DeleteAsync();
 
+             
             }
             catch (Exception ex)
             {
