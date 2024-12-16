@@ -25,7 +25,12 @@ namespace UnidentifiedSociety
 
         void PrintTitle()
         {
-            Console.WriteLine("\r\n  __  __     ____   __         __  _ ____        __\r\n / / / /__  /  _/__/ /__ ___  / /_(_) _(_)__ ___/ /\r\n/ /_/ / _ \\_/ // _  / -_) _ \\/ __/ / _/ / -_) _  / \r\n\\____/_//_/___/\\_,_/\\__/_//_/\\__/_/_//_/\\__/\\_,_/  \r\n         / __/__  ____(_)__ / /___ __              \r\n        _\\ \\/ _ \\/ __/ / -_) __/ // /              \r\n       /___/\\___/\\__/_/\\__/\\__/\\_, /               \r\n                              /___/                \r\n");
+            Console.WriteLine("\r\n  __  __     ____   __         __  _ ____        __\r\n / / / /__  /  _/__/ " +
+                "/__ ___  / /_(_) _(_)__ ___/ /\r\n/ /_/ / _ \\_/ // _  / -_) _ \\/ __/ / _/ / -_) _  / \r\n\\____" +
+                "/_//_/___/\\_,_/\\__/_//_/\\__/_/_//_/\\__/\\_,_/  \r\n         / __/__  ____(_)__ / " +
+                "/___ __              \r\n        _\\ \\/ _ \\/ __/ / -_) __/ // /              \r\n       " +
+                "/___/\\___/\\__/_/\\__/\\__/\\_, /               \r\n                              /___/       " +
+                "         \r\n");
         }
 
         void MainMenu()
@@ -56,7 +61,6 @@ namespace UnidentifiedSociety
                         Console.Clear();
                         GameMode loadGame = new LoadGame();
                         loadGame.Start();
-                        BackToMainMenu();
                         break;
                     case 3:
                         Console.Clear();
@@ -137,4 +141,3 @@ namespace UnidentifiedSociety
         }
     } 
     }
-

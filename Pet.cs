@@ -2,7 +2,7 @@
 
     namespace UnidentifiedSociety
     {
-        // Struct para sa physical attribute ng alien kopal!
+        // Struct para sa physical attribute ng alien
         struct PhysicalAttributes
         {
             public int Eyes { get; set; }
@@ -24,7 +24,7 @@
             }
         }
 
-        // Struct para sa appearance ng alien kopal!
+        // Struct para sa appearance ng alien
         struct AppearanceAttributes
         {
             public string Planet { get; set; }
@@ -55,7 +55,7 @@
             }
         }
 
-        // Struct sa ibang attribute ng alien kopal!
+        // Struct sa ibang attribute ng alien
         struct OtherAttributes
         {
             public bool HasTail { get; set; }
@@ -71,7 +71,8 @@
            
 
         public OtherAttributes(bool hasTail, string favoriteFood, string specialAbility, bool hasWings, bool glowsInDark,
-                                   string favoriteActivity, string transportation, string favoriteExercise, string preferredSoap, string specialTalent)
+                               string favoriteActivity, string transportation, string favoriteExercise, string preferredSoap, 
+                               string specialTalent)
             {
                 HasTail = hasTail;
                 FavoriteFood = favoriteFood;
