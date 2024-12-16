@@ -97,7 +97,6 @@ namespace UnidentifiedSociety
                     .Child(name)
                     .DeleteAsync();
 
-                Console.WriteLine($"Character '{name}' deleted successfully.");
             }
             catch (Exception ex)
             {
